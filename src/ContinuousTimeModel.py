@@ -19,18 +19,18 @@ class ContinuousTimeModel(EcoEpiModel):
     def __init__(self, param):
         super().__init__(param)
 
-    def dSdt(self, S, I, Y):
+    def __dSdt(self, S, I, Y):
         return self.r * S * (1 - (S + I) / self.K) - self.beta * S * I
 
-    def dIdt(self, S, I, Y):
+    def __dIdt(self, S, I, Y):
         return self.beta * S * I - self.c * I - (self.b * I * Y) / (self.m * Y + I)
     
 
-    def dYdt(self, S, I, Y):
+    def __dYdt(self, S, I, Y):
         return -self.d * Y + (self.k * self.b * I * Y) / (self.m * Y + I)
     
     def derivatives(self, S, I, Y):
-        dS = self.dSdt(S, I, Y)
-        dI = self.dIdt(S, I, Y)
-        dY = self.dYdt(S, I, Y)
+        dS = self.__dSdt(S, I, Y)
+        dI = self.__dIdt(S, I, Y)
+        dY = self.__dYdt(S, I, Y)
         return np.array([dS, dI, dY])
