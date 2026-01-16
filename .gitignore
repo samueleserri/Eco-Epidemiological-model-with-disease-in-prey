@@ -19,3 +19,7 @@
 *.vrb
 *.xdv
 *.pdf
+
+# Jupyter Notebook checkpoints 
+*.ipynb_checkpoints
+*.pyc
