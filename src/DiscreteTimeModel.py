@@ -234,6 +234,9 @@ class DiscreteTimeModel(EcoEpiModel):
         for key, value in param.items():
             if hasattr(self, key):
                 setattr(self, key, value)
+        # update R0 if beta, K, or c changed
+        if 'beta' in param or 'K' in param or 'c' in param:
+            self.R0 = self.beta * self.K / self.c
 
     def print_parameters(self):
         params = {
@@ -248,6 +251,7 @@ class DiscreteTimeModel(EcoEpiModel):
         }
         for key, value in params.items():
             print(f"{key}: {value}")
+        print(f"R0: {self.R0}")
 
 
 
