@@ -15,7 +15,7 @@ class EcoEpiModel:
     d: natural death rate of the predator population
     """
 
-    def __init__(self, param):
+    def __init__(self, param: dict):
         self.r = param['r']
         self.K = param['K']
         self.beta = param['beta']
