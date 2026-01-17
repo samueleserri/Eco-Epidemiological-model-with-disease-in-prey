@@ -1,6 +1,8 @@
 from EcoEpiModel import EcoEpiModel
 import numpy as np
 import matplotlib.pyplot as plt
+
+
 class DiscreteTimeModel(EcoEpiModel):
 
     """
@@ -16,9 +18,9 @@ class DiscreteTimeModel(EcoEpiModel):
     """
 
 
-    def __init__(self, param):
+    def __init__(self, param: dict):
         super().__init__(param)
-        self.R0 = self.beta * self.K / self.c
+        self.R0 = self.beta * self.K / self.c # Basic reproduction number
     
     def next_step(self, S, I, Y):
         S_next = self.__S_next(S, I, Y)
@@ -26,7 +28,7 @@ class DiscreteTimeModel(EcoEpiModel):
         Y_next = self.__Y_next(S, I, Y)
         return np.array([S_next, I_next, Y_next])
     
-    def run(self, init, max_iter: int = 10**4) -> dict:
+    def run(self, init: dict, max_iter: int = 10**4) -> dict:
         S_values = np.zeros(max_iter)
         I_values = np.zeros(max_iter)
         Y_values = np.zeros(max_iter)
@@ -44,7 +46,7 @@ class DiscreteTimeModel(EcoEpiModel):
         return {'S': S_values, 'I': I_values, 'Y': Y_values}
 
 
-    def plot_phase_space(self, init, res = None, max_iter: int = 10**4):
+    def plot_phase_space(self, init: dict, res = None, max_iter: int = 10**4):
         """
         Plot the phase space trajectory of the system in 3D.
         
@@ -136,6 +138,85 @@ class DiscreteTimeModel(EcoEpiModel):
 
 
 
+    def plot_bifurcation(self, param_name: str, lower_bound: float, upper_bound: float, 
+                        init: dict, num_points: int = 500, transient: int = 10**4, 
+                        sample: int = 200, population: str = 'all'):
+        """
+        Plot bifurcation diagram showing long-term dynamics vs a parameter.
+        
+        Args:
+            param_name: Name of the parameter to vary
+            lower_bound: Lower bound for the parameter range
+            upper_bound: Upper bound for the parameter range
+            init: Dictionary with initial conditions {'S0': ..., 'I0': ..., 'Y0': ...}
+            num_points: Number of parameter values to sample
+            transient: Number of initial iterations to discard
+            sample: Number of final values to plot per parameter value
+            population: Which population to plot ('S', 'I', 'Y', or 'all')
+        """
+
+        if not hasattr(self, param_name):
+            print(f"Parameter '{param_name}' not found in model")
+            return
+        
+        param_values = np.linspace(lower_bound, upper_bound, num_points)
+        original_value = getattr(self, param_name)  
+        
+        populations = ['S', 'I', 'Y'] if population == 'all' else [population]
+        colors = {'S': 'blue', 'I': 'red', 'Y': 'green'}
+        labels = {'S': 'Susceptible Prey', 'I': 'Infected Prey', 'Y': 'Predator'}
+        
+        fig, axes = plt.subplots(len(populations), 1, figsize=(12, 4*len(populations)))
+        if len(populations) == 1:
+            axes = [axes]  
+        
+        for idx, pop in enumerate(populations): # Loop over selected populations
+            # Iterate over all parameter values
+            for param_val in param_values:
+                setattr(self, param_name, param_val)
+
+                # Initialize state variables from initial conditions
+                S = init.get('S0', 0.0) # if key not found, default to 0.0
+                I = init.get('I0', 0.0)
+                Y = init.get('Y0', 0.0)
+
+                # TRANSIENT PHASE: discard initial iterations to reach attractor
+                for _ in range(transient):
+                    S, I, Y = self.next_step(S, I, Y)
+
+                # SAMPLING PHASE: collect values
+                values = []
+                for _ in range(sample):
+                    S, I, Y = self.next_step(S, I, Y)
+                    # Extract the selected population value 
+                    if pop == 'S':
+                        values.append(S)
+                    elif pop == 'I':
+                        values.append(I)
+                    elif pop == 'Y':
+                        values.append(Y)
+                    else:
+                        break
+
+                
+                # Plot all sampled values as vertical dots at this parameter value
+                # Multiple dots indicate periodic or chaotic behavior; single dot = fixed point
+                axes[idx].plot([param_val] * len(values), values, ',', 
+                             color=colors[pop], markersize=1, alpha=0.5)
+        
+            axes[idx].set_ylabel(f'{labels[pop]} Population')
+            axes[idx].set_title(f'Bifurcation Diagram: {labels[pop]} vs {param_name}')
+            axes[idx].grid(True, alpha=0.3)
+            if idx == len(populations) - 1:
+                axes[idx].set_xlabel(param_name)
+        
+        # Restore original parameter value 
+        setattr(self, param_name, original_value)
+        
+        plt.tight_layout()
+        plt.show()
+
+
 
 
 
@@ -147,10 +228,28 @@ class DiscreteTimeModel(EcoEpiModel):
     
     def __Y_next(self, S, I, Y):
         return Y * np.exp((self.k * self.b * I) / (self.m * Y + I) - self.d)
-
     
 
+    def update_parameters(self, param: dict):
+        for key, value in param.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
 
-    
+    def print_parameters(self):
+        params = {
+            'r': self.r,
+            'b': self.b,
+            'c': self.c,
+            'd': self.d,
+            'k': self.k,
+            'm': self.m,
+            'beta': self.beta,
+            'K': self.K
+        }
+        for key, value in params.items():
+            print(f"{key}: {value}")
 
-    
+
+
+
+
