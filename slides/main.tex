@@ -28,59 +28,59 @@
 \usetheme{Frankfurt}
 \usecolortheme{default}
 \setbeamercolor{background canvas}{bg=black}
+
 \setbeamercolor{normal text}{fg=white}
+\setbeamercolor{block body}{bg=black!75,fg=white}
+
+\setbeamercolor{frametitle}{bg=blue!80,fg=white}
+\setbeamercolor{framesubtitle}{bg=blue!50,fg=white}
 
 \setbeamercovered{dynamic}
   % or whatever (possibly just delete it)
+
+\setbeamerfont{footnote}{size=\tiny}
 }
 
 
 \usepackage[english]{babel}
+
 % or whatever
 
-\usepackage[latin1]{inputenc}
-% or whatever
-
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 
 
 \title[Short Paper Title] % (optional, use only with long paper titles)
-{Title As It Is In the Proceedings}
+{Complex dynamical behaviors in a discrete
+eco-epidemiological model with disease in
+prey}
 
 \subtitle
-{Include Only If Paper Has a Subtitle}
+{Zengyun Hu, Zhidong Teng, Chaojun Jia, Long Zhang and Xi Chen}
 
-\author[Author, Another] % (optional, use only with lots of authors)
-{F.~Author\inst{1} \and S.~Another\inst{2}}
-% - Give the names in the same order as the appear in the paper.
-% - Use the \inst{?} command only if the authors have different
-%   affiliation.
-
-\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
-{
-  \inst{1}%
-  Department of Computer Science\\
-  University of Somewhere
-  \and
-  \inst{2}%
-  Department of Theoretical Philosophy\\
-  University of Elsewhere}
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
 
-\date[CFP 2003] % (optional, should be abbreviation of conference name)
-{Conference on Fabulous Presentations, 2003}
+\date[2026] % (optional, should be abbreviation of conference name)
+{Presentazione esame "Sistemi complessi"}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
 
-\subject{Theoretical Computer Science}
+
+\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+{
+Università degli studi di Trieste
+}
+
+% \subject{Theoretical Computer Science}
 % This is only inserted into the PDF information catalog. Can be left
 % out. 
 
-
+\author % (optional, use only with lots of authors)
+{Samuele Serri}
 
 % If you have a file called "university-logo-filename.xxx", where xxx
 % is a graphic format that can be processed by latex or pdflatex,
@@ -136,89 +136,371 @@
 % - If you omit details that are vital to the proof/implementation,
 %   just say so once. Everybody will be happy with that.
 
-\section{Motivation}
+\section{Introduction}
 
-\subsection{The Basic Problem That We Studied}
+\subsection{Eco-epidemiological models}
 
-\begin{frame}{Make Titles Informative. Use Uppercase Letters.}{Subtitles are optional.}
+\begin{frame}{Eco-epidemiological models.}
   % - A title should summarize the slide in an understandable fashion
   %   for anyone how does not follow everything on the slide itself.
+\begin{itemize}
+  \item Combine ecological models of population dynamics with epidemiological models.
+  \item 
+\end{itemize}
+\end{frame}
 
+\subsection{The model studied}
+
+\begin{frame}{Discrete time eco-epidemiological model with disease in prey}
+  \begin{block}{Model Equations}
+  \begin{align}
+    S(t + 1) &= S(t)\exp\left\{r\left(1 - \frac{S(t) + I(t)}{K}\right) - \beta I(t)\right\} \\
+    I(t + 1) &= I(t)\exp\left\{\beta S(t) - c - \frac{bY(t)}{mY(t) + I(t)}\right\} \\
+    Y(t + 1) &= Y(t)\exp\left\{\frac{kbI(t)}{mY(t) + I(t)} - d\right\}
+  \end{align}
+  \end{block}
+  Where $S(t)$, $I(t)$ and $Y(t)$ denote the susceptible prey, infected prey and predator populations at time $t$, respectively.
+  % You can create overlays\dots
+  % \begin{itemize}
+  % \item using the \texttt{pause} command:
+  %   \begin{itemize}
+  %   \item
+  %     First item.
+  %     \pause
+  %   \item    
+  %     Second item.
+  %   \end{itemize}
+  % \item
+  %   using overlay specifications:
+  %   \begin{itemize}
+  %   \item<3->
+  %     First item.
+  %   \item<4->
+  %     Second item.
+  %   \end{itemize}
+  % \item
+  %   using the general \texttt{uncover} command:
+  %   \begin{itemize}
+  %     \uncover<5->{\item
+  %       First item.}
+  %     \uncover<6->{\item
+  %       Second item.}
+  %   \end{itemize}
+  % \end{itemize}
+\end{frame}
+
+\begin{frame}{Parameters}
   \begin{itemize}
-  \item
-    Use \texttt{itemize} a lot.
-  \item
-    Use very short sentences or short phrases.
+    \item $r$: intrinsic birth rate of the prey population.
+    \item $K$: carrying capacity for the prey population.
+    \item $\beta$: transmission coefficient of the disease.
+    \item $c$: death rate of the infected prey.
+    \item $b$: predation coefficient.
+    \item $m$: ratio-dependent rate. \footnote{{See: Xiao, Y, Chen, L: A ratio-dependent predator-prey model with disease in the prey. Appl. Math. Comput. 131, 397-414 (2002)}}
+    \item $k$: coefficient in conversing prey into predator offspring.
+    \item $d$: death rate of the predator.
   \end{itemize}
+  $r, k, b, \beta, K, m, c, d > 0$.
 \end{frame}
 
-\begin{frame}{Make Titles Informative.}
-
-  You can create overlays\dots
-  \begin{itemize}
-  \item using the \texttt{pause} command:
-    \begin{itemize}
-    \item
-      First item.
-      \pause
-    \item    
-      Second item.
-    \end{itemize}
-  \item
-    using overlay specifications:
-    \begin{itemize}
-    \item<3->
-      First item.
-    \item<4->
-      Second item.
-    \end{itemize}
-  \item
-    using the general \texttt{uncover} command:
-    \begin{itemize}
-      \uncover<5->{\item
-        First item.}
-      \uncover<6->{\item
-        Second item.}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-\subsection{Previous Work}
-
-\begin{frame}{Make Titles Informative.}
-\end{frame}
-
-\begin{frame}{Make Titles Informative.}
-\end{frame}
-
-
-
-\section{Our Results/Contribution}
+\section{Equilibria}
 
 \subsection{Main Results}
 
 \begin{frame}{Make Titles Informative.}
+  \begin{block}{$\mathcal{R}_0$}
+    \begin{equation}
+      \mathcal{R}_0 = \frac{K\beta}{c}
+    \end{equation}
+  \end{block}
 \end{frame}
 
 \begin{frame}{Make Titles Informative.}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{$\mathcal{R}_0 < 1$}
+      \begin{equation}
+        \mathcal{R}_0 = \frac{K\beta}{c} < 1
+      \end{equation}
+      One equilibrium:
+      \begin{itemize}  
+        \item $E_1 = (K,0,0)$
+      \end{itemize}
+    \end{block}
+    
+    \column{0.5\textwidth}
+    \begin{block}{$\mathcal{R}_0 > 1$}
+      \begin{equation}
+        \mathcal{R}_0 = \frac{K\beta}{c} > 1
+      \end{equation}
+      Always at least two equilibria:
+      \begin{itemize}
+        \item $E_1 = (K,0,0)$
+        \item $E_2 = \left(\frac{c}{\beta}, \frac{rK}{r + K\beta}(1 - \frac{c}{K\beta}), 0\right)$
+      \end{itemize}
+    \end{block}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Make Titles Informative.}
+  if $kb > d$ and $mk(K\beta - c) - (kb - d) > 0$, then there exists a positive equilibrium
+  \begin{block}
+  {$E_3 = (S^*, I^*, Y^*)$}
+  where
+  \begin{itemize}
+    \item $S^* = \frac{cmk + kb - d}{mk\beta}$,
+    \item  $I^* = \frac{r}{r + K\beta}(K - S^*)$,
+    \item  $Y^* = \frac{kb - d}{md}I^*$
+  \end{itemize}
+\end{block}
 \end{frame}
 
 
-\subsection{Basic Ideas for Proofs/Implementation}
 
-\begin{frame}{Make Titles Informative.}
+\subsection{Stability Analysis}
+
+\begin{frame}{Stability of $E_1$.}
+  \begin{block}{Theorem 1}
+    \begin{enumerate}
+      \item if $\mathcal{R}_0 < 1$ and $0 < r < 2$, $E_1$ is locally asymptotically stable; 
+      \item if $\mathcal{R}_0 < 1$ and $r > 2$, $E_1$ is unstable;
+      \item if $\mathcal{R}_0 > 1$, $E_1$ is unstable.
+    \end{enumerate}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Make Titles Informative.}
+\begin{frame}{Stability of $E_2$.}
+  \begin{block}{Theorem 2}
+    Let $\mathcal{R}_0 > 1$, then $E_2$ is locally asymptotically stable if the following conditions hold:
+    \begin{align*}
+      &bk < d,
+      &(r - 4)c < 4, \hspace*{1cm} 
+      &\frac{cr(c + 2)}{4 + cr} < K\beta < 1 + c
+    \end{align*}
+  \end{block}
+These results are obtained by studying the eigenvalues of the Jacobian matrix evaluated at the equilibria.
+\begin{equation*}
+  J(E_2) = \begin{pmatrix}
+    1 - \frac{rS}{K} & -S(\beta + \frac{r}{K}) & 0 \\
+    \beta I & 1 & -b \\
+    0 & 0 & e^{bk - d}
+  \end{pmatrix}
+\end{equation*}
 \end{frame}
 
-\begin{frame}{Make Titles Informative.}
+\begin{frame}{Stability of $E_3$.}
+  \begin{block}{Theorem 3}
+    Let $\mathcal{R}_0 > 1, kb > d$ and $mk(K\beta - c) - (kb - d) > 0$, then $E_3$ is locally asymptotically stable if one of the following conditions hold:
+    \begin{enumerate}
+      \item $\Delta \leq 0$, $P(- 1) < 0$ and $-1 < \lambda_{1,2} < 1$;
+      \item $\Delta > 0$, $P(-1) < 0$ and $-1 < \lambda_{2,3} < 1$.
+    \end{enumerate}
+  \end{block}
+\begin{equation*}
+  J(E_3) = \begin{pmatrix}
+    1 - \frac{r}{K}S^* & -S^*(\beta + \frac{r}{K}) & 0 \\
+    \beta I^* & 1 + \frac{bI^*Y^*}{(mY^* + I^*)^2} &  -\frac{b(I^*)^2}{(mY^* + I^*)^2}\\
+    0 & \frac{bkm(Y^*)^2}{(mY^* + I^*)^2} & 1 - \frac{bkmI^*Y^*}{(mY^* + I^*)^2} \\
+  \end{pmatrix}
+\end{equation*}
+And {\small$P(\lambda) = \lambda^3 + a_1\lambda^2 + a_2\lambda + a_3$} \\
+{\tiny $a_1 = -(J_{11} + J_{22} + J_{33}), \newline 
+a_2 = J_{11}(J_{22} + J_{33}) + J_{22}J_{33} - J_{23}J_{32} - J_{12}J_{21}, \newline
+a_3 = det(J(E_3))$.}
 \end{frame}
 
+%%%%  PART II
+
+\section{Numerical simulations}
+\subsection{E1, Equilibrium without predator and disease-free prey}
+
+\begin{frame}{Period Doubling Bifurcation for $r > 2$.}
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{Imgs/EX1/Ex1_bifurcation.png}
+  \caption{$b = 0.2, c = 0.6, d = 0.12, k  = 0.1, m = 0.2, \beta = 0.05, K = 8, r \in [0.01,4], S0 = 4, I0 = 0.5, Y0 = 0.1$}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{equation*}
+      \mathcal{R}_0 = \frac{K\beta}{c} = \frac{8 \times 0.05}{0.6} \approx 0.67 < 1
+  \end{equation*}
+  \begin{figure}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{Imgs/EX1/Ex1_phase_diagram_r_equal_to_1.png}
+      \caption{Phase space diagram for $r=1$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{Imgs/EX1/Ex1_phase_diagram_r_equal_to_2.png}
+      \caption{Phase space diagram for $r=2$.}
+    \end{minipage}
+  \end{figure}
+\end{frame}
+
+\subsection{E2, equilibrium with disease, but no predator}
+
+\begin{frame}{Flip bifurcation and chaos}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{Imgs/EX2/Es2_bifurcation.png}
+    \caption{$b = 0.15, c = 0.1, d = 0.2, k  = 0.2, m = 0.3, \beta = 0.05, K = 4, r \in [0.001, 7], S0 = 2, I0 = 1.5, Y0 = 1$}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{equation*}
+      \mathcal{R}_0 = \frac{K\beta}{c} = \frac{4 \times 0.05}{0.1} = 2 > 1
+  \end{equation*}
+  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX2/Phase_space_r_equal_002.png}
+        \caption{Phase space diagram for $r=0.02$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX2/Phase_space_r_equal_6_8.png}
+        \caption{Phase space diagram for $r=6.05$.}
+      \end{minipage}
+    \end{figure}
+    A 3-period orbit appears for $r \approx 6.05$.
+  \end{flushright}
+\end{frame}
+
+\begin{frame}{\small{$0 < c \leq 1$ Hopf bifurcation and chaos. $1 < c < 1.633$ $S$ increases, $I$ decreases. $c \geq 1.633$ flip bifurcation and chaos.}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{Imgs/EX3/Ex3_bifurcation.png}
+    \caption{\tiny{$b = 0.2, d = 0.2, k = 0.2, m = 0.5, r = 3, \beta = 0.2, K = 10, c \in [0.5, 2.5], S0 = 6, I0 = 1, Y0 = 1$}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{equation*}
+      \mathcal{R}_0 = \frac{K\beta}{c} = \frac{10 \times 0.2}{c} = \frac{2}{c}
+  \end{equation*}
+  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX3/Ex3_phase_space_c_equal_1_5.png}
+        \caption{Phase space diagram for $c=1.5$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX3/Ex3_phase_space_c_equal_1.png}
+        \caption{Phase space diagram for $c=1$.}
+      \end{minipage}
+    \end{figure}
+  \end{flushright}
+\end{frame}
+
+
+
+\begin{frame}{\small{$E_2$ stable for $2 < K < 7$, flip bifurcation and Hopf bifurcation for $K \geq 7$.}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{Imgs/EX4/EX4_bifurcation.png}
+    \caption{$b = 0.1, c = 0.4, d = 0.2, k  = 0.2, m = 0.5, r = 0.2, \beta = 0.2, K \in [2,8], S0 = 1, I0 = 0.5, Y0 = 0.2$}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{equation*}
+      \mathcal{R}_0 = \frac{K\beta}{c} = \frac{K \times 0.2}{0.4} = \frac{K}{2}
+  \end{equation*}
+  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX4/Ex4_phase_space_K_equal_4.png}
+        \caption{Phase space diagram for $K=4$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX4/Ex4_phase_space_K_equal_8.png}
+        \caption{Phase space diagram for $K=8$.}
+      \end{minipage}
+    \end{figure}
+  \end{flushright}
+\end{frame}
+
+
+\subsection{E3, endemic equilibrium}
+
+
+\begin{frame}{\small{$0.15 < b < 0.28$ Hopf bifurcation. $ b \geq 0.28 < 0.57$  stable equilibrium.}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{Imgs/EX5/Ex5_bifurcation.png}
+    \caption{$c = 0.1, d = 0.02, k  = 0.3, m = 0.4, r = 1.2, \beta = 0.25, K = 6, b \in [0.15,7], S0 = 2, I0 = 1.5, Y0 = 1$}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{equation*}
+      \mathcal{R}_0 = \frac{K\beta}{c} = \frac{6 \times 0.25}{0.1} = 15
+  \end{equation*}
+  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX5/ex5_phase_diagram_b_equal_0_6.png}
+        \caption{Phase space diagram for $b=0.6$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX5/ex5_phase_diagram_b_equal_0_2.png}
+        \caption{Phase space diagram for $b=0.2$.}
+      \end{minipage}
+    \end{figure}
+  \end{flushright}
+\end{frame}
+
+
+\begin{frame}{\small{$0.15 < k < 0.34$ Hopf bifurcation. $ 1 > k \geq 0.34$ $S,I$ increasing and $Y$ decreasing.}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{Imgs/EX6/Ex6_bifurcation.png}
+    \caption{$b = 0.3, c = 0.1, d = 0.04, m = 0.3, r = 1.2, \beta = 0.25, K = 6, k \in [0.15, 1], S0 = 2, I0 = 1.5, Y0 = 1$}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{equation*}
+      \mathcal{R}_0 = \frac{K\beta}{c} = \frac{6 \times 0.25}{0.1} = 15
+  \end{equation*}
+  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX6/ex_6_pahse_diagram_k_equal_0_3.png}
+        \caption{Phase space diagram for $k=0.3$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX6/ex_6_pahse_diagram_k_equal_0_8.png}
+        \caption{Phase space diagram for $k=0.8$.}
+      \end{minipage}
+    \end{figure}
+  \end{flushright}
+\end{frame}
 
 
 \section*{Summary}
