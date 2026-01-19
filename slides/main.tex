@@ -213,8 +213,13 @@ Università degli studi di Trieste
   \begin{block}{$\mathcal{R}_0$: Basic Reproduction Number}
     \begin{equation}
       \mathcal{R}_0 = \frac{K\beta}{c}
-    \end{equation}
-  \end{block}
+    \end{equation}\end{block}
+    \begin{itemize}
+      \item $K$: carrying capacity for the prey population.
+      \item $\beta$: transmission coefficient of the disease.
+      \item $c$: death rate of the infected prey.
+    \end{itemize}
+  
 \end{frame}
 
 \begin{frame}{The number of equilibria depends on $\mathcal{R}_0$.}
@@ -508,16 +513,15 @@ a_3 = det(J(E_3))$.}
 
 \section*{Summary}
 
-\begin{frame}{Summary}
-
-  % Keep the summary *very short*.
+\begin{frame}{Summary}{The discrete-time model exhibits a richer dynamical behavior compared to its continuous-time counterpart.}
   \begin{itemize}
   \item
-    The \alert{first main message} of your talk in one or two lines.
+    When \alert{$\mathcal{R}_0 > 1$}  and \alert{$bk < d$}: $S$ and $I$ coexist while $Y$ becomes extinct.
   \item
-    The \alert{second main message} of your talk in one or two lines.
+    \alert{$r,K,\beta,c$} directly influence the dynamical behaviors of the system.
+    By varying these parameters, we observe \alert{local stability}, \alert{period-doubling bifurcations}, \alert{Hopf bifurcations}, and even \alert{chaotic dynamics}.
   \item
-    Perhaps a \alert{third message}, but not more than that.
+    When \alert{$b$} and \alert{$k$} increase, $Y$ increase and $I$ decrease.
   \end{itemize}
   
   % The following outlook is optional.
@@ -527,7 +531,7 @@ a_3 = det(J(E_3))$.}
     Outlook
     \begin{itemize}
     \item
-      Something you haven't solved.
+      Study the case where $S$ is also predated.
     \item
       Something else you haven't solved.
     \end{itemize}
@@ -539,10 +543,10 @@ a_3 = det(J(E_3))$.}
 % All of the following is optional and typically not needed. 
 \appendix
 \section<presentation>*{\appendixname}
-\subsection<presentation>*{For Further Reading}
+\subsection<presentation>*{Bibliography}
 
 \begin{frame}[allowframebreaks]
-  \frametitle<presentation>{For Further Reading}
+  \frametitle<presentation>{Bibliography}
     
   \begin{thebibliography}{10}
     
@@ -550,19 +554,12 @@ a_3 = det(J(E_3))$.}
   % Start with overview books.
 
   \bibitem{Author1990}
-    A.~Author.
-    \newblock {\em Handbook of Everything}.
-    \newblock Some Press, 1990.
- 
-    
-  \beamertemplatearticlebibitems
-  % Followed by interesting articles. Keep the list short. 
-
-  \bibitem{Someone2000}
-    S.~Someone.
-    \newblock On this and that.
-    \newblock {\em Journal of This and That}, 2(1):50--100,
-    2000.
+    Zengyun Hu, Zhidong Teng, Chaojun Jia, Long Zhang and Xi Chen
+    \newblock {\em Complex dynamical behaviors in a discrete
+eco-epidemiological model with disease in
+prey}.
+    \newblock Advances in Diﬀerence Equations 2014
+    \newblock \url{http://www.advancesindifferenceequations.com/content/2014/1/265}
   \end{thebibliography}
 \end{frame}
 
