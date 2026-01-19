@@ -253,6 +253,18 @@ class DiscreteTimeModel(EcoEpiModel):
             print(f"{key}: {value}")
         print(f"R0: {self.R0}")
 
+    
+    def print_stability_conditions_E1(self):
+        print("Stability Conditions E1:")
+        print(f"if R0 < 1 and 0 < r < 2, E1 is LAS")
+        print(f"R0 = {self.R0}, r = {self.r}")
+
+    def print_stability_conditions_E2(self):
+        print("Stability Conditions E2:")
+        print(f"if R0 > 1 and bk < d, (r - 4)c < 4, cr(c + 2)/(4 + cr) < beta*K < c + 1, E2 is LAS")
+        print(f"R0 = {self.R0}, bk = {self.b * self.k}, d = {self.d}, c*r*(c + 2)/(4 + c*r) = {self.c * self.r * (self.c + 2) / (4 + self.c * self.r)}, c = {self.c}, beta*K = {self.beta * self.K}")
+
+
 
 
 
