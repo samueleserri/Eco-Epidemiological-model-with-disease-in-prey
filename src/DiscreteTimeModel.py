@@ -6,15 +6,43 @@ import matplotlib.pyplot as plt
 class DiscreteTimeModel(EcoEpiModel):
 
     """
-    This class implements the discrete-time version of the model studied in:
-    Complex dynamical behaviors in a discrete eco-epidemiological model with disease in :
-    Hu, Z., Teng, Z., Jia, C. et al. Complex dynamical behaviors in a discrete eco-epidemiological model with disease in prey. Adv Differ Equ 2014, 265 (2014). 
-    https://doi.org/10.1186/1687-1847-2014-265
+This class implements the Discrete-time eco-epidemiological model studied in (Hu et al., 2014).
 
-    The model is defined by the following system of difference equations:
-    S(t + 1) = S(t)*exp{r*(1-(S(t) + I(t))/K) - beta*I(t)}
-    I(t + 1) = I(t)*exp{beta*S(t) - c - b*Y(t)/(m*Y(t) + I(t))}
-    Y(t + 1) = Y(t)*exp{(k*b*I(t))/(m*Y(t) + I(t)) - d}
+Model equations:
+  S(t+1) = S(t) * exp( r*(1 - (S(t)+I(t))/K) - beta * I(t) )
+  I(t+1) = I(t) * exp( beta * S(t) - c - (b * Y(t)) / (m * Y(t) + I(t)) )
+  Y(t+1) = Y(t) * exp( (k * b * I(t)) / (m * Y(t) + I(t)) - d )
+
+Expected parameters (provided via `param` dict or base class):
+  r, b, c, d, k, m, beta, K   -- positive floats
+
+Attributes set/used:
+  self.r, self.b, self.c, self.d, self.k, self.m, self.beta, self.K
+  self.R0  -- basic reproduction number = beta * K / c
+
+Usage example:
+  model = DiscreteTimeModel(param)
+  result = model.run({'S0': 0.8, 'I0': 0.1, 'Y0': 0.05}, max_iter=10000)
+
+methods:
+    next_step(S, I, Y) -> (S_next, I_next, Y_next):
+        Compute the next state given current populations S, I, Y.
+    run(init: dict, max_iter: int) -> dict:
+        Simulate the model for max_iter steps from initial conditions in init.
+    plot_phase_space(init: dict, res = None, max_iter: int):
+        Plot the phase space trajectory of the system in 3D.
+        https://matplotlib.org/stable/gallery/mplot3d/index.html
+    plot_populations_vs_parameter(param_name: str, lower_bound: float, upper_bound: float, 
+                                 init: dict, num_points: int , max_iter: int):
+        Plot equilibrium populations as a function of a parameter.
+    plot_bifurcation(param_name: str, lower_bound: float, upper_bound: float, 
+                    init: dict, num_points: int, transient: int, 
+                    sample: int, population: str):
+        Plot bifurcation diagram showing long-term dynamics vs a parameter.
+References:
+  Hu, Z., Teng, Z., Jia, C., et al., "Complex dynamical behaviors in a discrete
+  eco-epidemiological model with disease in prey", Adv. Differ. Equ. (2014). DOI:
+  https://doi.org/10.1186/1687-1847-2014-265
     """
 
 
@@ -29,6 +57,20 @@ class DiscreteTimeModel(EcoEpiModel):
         return np.array([S_next, I_next, Y_next])
     
     def run(self, init: dict, max_iter: int = 10**4) -> dict:
+        """
+        This method simulates the model for a given number of iterations starting from initial conditions.
+        ----------------------------------------------------------------
+        :param init: initial conditions {'S0': ..., 'I0': ..., 'Y0': ...}
+        :type init: dict
+        :param max_iter: number of iterations to simulate
+        :type max_iter: int
+        :rtype: dict
+        :return: dictionary with time series of populations {'S': ..., 'I': ..., 'Y': ...}
+        ----------------------------------------------------------------
+        Example Usage:
+        res = model.run({'S0': 0.8, 'I0': 0.1, 'Y0': 0.05}, max_iter=10000)
+        ----------------------------------------------------------------
+        """
         S_values = np.zeros(max_iter)
         I_values = np.zeros(max_iter)
         Y_values = np.zeros(max_iter)
