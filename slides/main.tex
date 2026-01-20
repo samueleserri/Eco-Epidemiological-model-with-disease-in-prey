@@ -144,12 +144,28 @@ Università degli studi di Trieste
   % - A title should summarize the slide in an understandable fashion
   %   for anyone how does not follow everything on the slide itself.
 \begin{itemize}
-  \item Combine ecological models of population dynamics with epidemiological models.
-  \item 
+  \item \textcolor{blue!50}{Ecological models} $\rightarrow$ study interactions between species and their environment.
+  \item \textcolor{blue!50}{Epidemiological models} $\rightarrow$ study the spread of diseases in populations.
 \end{itemize}
+\begin{block}{Eco-epidemiological models}
+  Combine both aspects to study the interactions between species while considering the impact of diseases on population dynamics.
+\end{block}
 \end{frame}
 
 \subsection{The model studied}
+
+\begin{frame}{Hypoteses of the model.}
+  \begin{itemize}
+    \item The prey population is divided into susceptible and infected individuals.
+    \item In the absence of disease the prey population density grows according
+to a logistic curve with carrying capacity K and intrinsic growth rate r. 
+    \item Only the susceptible prey are able to reproduce.
+    \item Disease spread in the prey population only. The infected populations do not recover or become immune. 
+    \item We assume that the predator eats only the infected prey with ratio-dependent Michaelis–Menten functional response function.\footnote{See: J. Chattopadhyay, O. Arino, A predator–prey model with disease in the prey, Nonlinear Anal.
+36 (1999) 749–766.}
+  \end{itemize}
+  
+\end{frame}
 
 \begin{frame}{Discrete time eco-epidemiological model with disease in prey}
   \begin{block}{Model Equations}
