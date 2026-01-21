@@ -212,7 +212,7 @@ References:
         if len(populations) == 1:
             axes = [axes]  
         
-        for idx, pop in enumerate(populations): # Loop over selected populations
+        for idx, pop in enumerate(populations): 
             # Iterate over all parameter values
             for param_val in param_values:
                 setattr(self, param_name, param_val)
@@ -230,7 +230,6 @@ References:
                 values = []
                 for _ in range(sample):
                     S, I, Y = self.next_step(S, I, Y)
-                    # Extract the selected population value 
                     if pop == 'S':
                         values.append(S)
                     elif pop == 'I':
@@ -242,7 +241,8 @@ References:
 
                 
                 # Plot all sampled values as vertical dots at this parameter value
-                # Multiple dots indicate periodic or chaotic behavior; single dot = fixed point
+                # if the equilibrium is stable, all sample values (200) will overlap, otherwise we they will spread out
+                # See: Hiromi Seno A Primer on Population Dynamics Modeling section 2.1 Bifurcation Diagram
                 axes[idx].plot([param_val] * len(values), values, ',', 
                              color=colors[pop], markersize=1, alpha=0.5)
         
