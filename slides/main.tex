@@ -67,13 +67,13 @@ prey}
 % - Keep it simple, no one is interested in your street address.
 
 \date[2026] % (optional, should be abbreviation of conference name)
-{Presentazione esame "Sistemi complessi"}
+{Presentazione esame ``Sistemi complessi''}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
 
 
-\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+\institute[Università degli studi di Trieste] % (optional, but mostly needed)
 {
 Università degli studi di Trieste
 }
@@ -158,7 +158,7 @@ Università degli studi di Trieste
 \subsection{The model studied}
 
 \begin{frame}{Hypoteses of the model.}
-  \begin{itemize}
+  \begin{enumerate}
     \item The prey population is divided into susceptible and infected individuals.
     \item In the absence of disease the prey population density grows according
 to a logistic curve with carrying capacity K and intrinsic growth rate r. 
@@ -166,7 +166,7 @@ to a logistic curve with carrying capacity K and intrinsic growth rate r.
     \item Disease spread in the prey population only. The infected populations do not recover or become immune. 
     \item We assume that the predator eats only the infected prey with ratio-dependent Michaelis–Menten functional response function.\footnote{See: J. Chattopadhyay, O. Arino, A predator–prey model with disease in the prey, Nonlinear Anal.
 36 (1999) 749–766.}
-  \end{itemize}
+  \end{enumerate}
   
 \end{frame}
 
@@ -402,6 +402,25 @@ a_3 = det(J(E_3))$.}
   \end{flushright}
 \end{frame}
 
+\begin{frame}{Comparison between Equilibria $E_1$ and $E_2$ and $r$.}  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX2/population_vs_r.png}
+        \caption{Population vs $r$ for Equilibrium $E_1$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX2/population_vs_r_e1.png}
+        \caption{Population vs $r$ for Equilibrium $E_2$.}
+      \end{minipage}
+    \end{figure}
+  \end{flushright}
+  
+\end{frame}
+
 \begin{frame}{\small{$0 < c \leq 1$ Hopf bifurcation and chaos. $1 < c < 1.633$ $S$ increases, $I$ decreases. $c \geq 1.633$ flip bifurcation and chaos.}}
   \begin{figure}
     \centering
@@ -432,7 +451,13 @@ a_3 = det(J(E_3))$.}
   \end{flushright}
 \end{frame}
 
-
+\begin{frame}{Population vs $c \in [0.5, 2.5]$.}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{Imgs/EX3/population_vs_c.png}
+    \caption{Population vs $c \in [0.5,2.5]$.}
+  \end{figure}
+\end{frame}
 
 \begin{frame}{\small{$E_2$ stable for $2 < K < 7$, flip bifurcation and Hopf bifurcation for $K \geq 7$.}}
   \begin{figure}
@@ -527,6 +552,25 @@ a_3 = det(J(E_3))$.}
       \end{minipage}
     \end{figure}
   \end{flushright}
+\end{frame}
+
+\begin{frame}{Influence of the parameters $b$ and $k$ on populations.}  \begin{flushright}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX6/pop_vs_k.png}
+        \caption{$b$ fixed and varying $k$.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Imgs/EX6/popultaions_vs_b.png}
+        \caption{$k$ fixed and varying $b$.}
+      \end{minipage}
+    \end{figure}
+  \end{flushright}
+  
 \end{frame}
 
 
